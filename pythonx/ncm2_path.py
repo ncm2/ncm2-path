@@ -16,12 +16,12 @@ class Source(Ncm2Source):
         startccol = ctx['startccol']
         base = ctx['base']
 
-        path_keywrod = re.search(path_pattern + '$', typed).group(0)
+        path_keyword = re.search(path_pattern + '$', typed).group(0)
 
-        dr = path.expandvars(path_keywrod)
+        dr = path.expandvars(path_keyword)
         dr = path.expanduser(dr)
         expanded = False
-        if dr != path_keywrod:
+        if dr != path_keyword:
             expanded = True
         dr = path.dirname(dr)
 
@@ -36,7 +36,7 @@ class Source(Ncm2Source):
         cwd = self.nvim.call('getcwd')
         base_dirs.append(('cwd', cwd), )
 
-        if path_keywrod and path_keywrod[0] != ".":
+        if path_keyword and path_keyword[0] != ".":
             base_dirs.append(('root', "/"))
 
         matcher = self.matcher_get(ctx['matcher'])

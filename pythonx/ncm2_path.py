@@ -16,12 +16,12 @@ class Source(Ncm2Source):
         startccol = ctx['startccol']
         base = ctx['base']
 
-        path_keywrod = re.search(path_pattern + '$', typed).group(0)
+        path_keyword = re.search(path_pattern + '$', typed).group(0)
 
-        dr = path.expandvars(path_keywrod)
+        dr = path.expandvars(path_keyword)
         dr = path.expanduser(dr)
         expanded = False
-        if dr != path_keywrod:
+        if dr != path_keyword:
             expanded = True
         dr = path.dirname(dr)
 
@@ -67,12 +67,12 @@ class Source(Ncm2Source):
         startccol = ctx['startccol']
         base = ctx['base']
 
-        path_keywrod = re.search(path_pattern + '$', typed).group(0)
+        path_keyword = re.search(path_pattern + '$', typed).group(0)
 
-        dr = path.expandvars(path_keywrod)
+        dr = path.expandvars(path_keyword)
         dr = path.expanduser(dr)
         expanded = False
-        if dr != path_keywrod:
+        if dr != path_keyword:
             expanded = True
         dr = path.dirname(dr)
 
@@ -119,18 +119,18 @@ class Source(Ncm2Source):
         startccol = ctx['startccol']
         base = ctx['base']
 
-        path_keywrod = re.search(path_pattern + '$', typed).group(0)
+        path_keyword = re.search(path_pattern + '$', typed).group(0)
 
-        dr = path.expandvars(path_keywrod)
+        dr = path.expandvars(path_keyword)
         dr = path.expanduser(dr)
         expanded = False
-        if dr != path_keywrod:
+        if dr != path_keyword:
             expanded = True
         dr = path.dirname(dr)
 
         logger.debug('dir: %s', dr)
 
-        if not path_keywrod.startswith('/'):
+        if not path_keyword.startswith('/'):
             return
 
         label = 'root'

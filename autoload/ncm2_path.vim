@@ -5,7 +5,8 @@ let s:loaded = 1
 
 let g:ncm2_path#proc = yarp#py3('ncm2_path')
 
-let g:ncm2_path#bufpath_source = get(g:, 'ncm2_path#bufpath_source', {
+let g:ncm2_path#bufpath_source = extend(
+            \ get(g:, 'ncm2_path#bufpath_source', {}), {
             \ 'name': 'bufpath',
             \ 'priority': 6,
             \ 'mark': '/',
@@ -15,13 +16,10 @@ let g:ncm2_path#bufpath_source = get(g:, 'ncm2_path#bufpath_source', {
             \       '([^\W]|[-.~%$]|[/\\])+[/\\]+'],
             \ 'on_complete': 'ncm2_path#on_complete_bufpath',
             \ 'on_warmup': 'ncm2_path#on_warmup',
-            \ })
+            \ }, 'keep')
 
-let g:ncm2_path#bufpath_source = extend(g:ncm2_path#bufpath_source,
-            \ get(g:, 'ncm2_path#bufpath_source_override', {}),
-            \ 'force')
-
-let g:ncm2_path#cwdpath_source = get(g:, 'ncm2_path#cwdpath_source', {
+let g:ncm2_path#cwdpath_source = extend(
+            \ get(g:, 'ncm2_path#cwdpath_source', {}), {
             \ 'name': 'cwdpath',
             \ 'priority': 5,
             \ 'mark': '/',
@@ -31,27 +29,21 @@ let g:ncm2_path#cwdpath_source = get(g:, 'ncm2_path#cwdpath_source', {
             \       '([^\W]|[-.~%$]|[/\\])+[/\\]+'],
             \ 'on_complete': 'ncm2_path#on_complete_cwdpath',
             \ 'on_warmup': 'ncm2_path#on_warmup',
-            \ })
+            \ }, 'keep')
 
-let g:ncm2_path#cwdpath_source = extend(g:ncm2_path#cwdpath_source,
-            \ get(g:, 'ncm2_path#cwdpath_source_override', {}),
-            \ 'force')
-
-let g:ncm2_path#rootpath_source = get(g:, 'ncm2_path#rootpath_source', {
+let g:ncm2_path#rootpath_source = extend(
+            \ get(g:, 'ncm2_path#rootpath_source', {}), {
             \ 'name': 'rootpath',
             \ 'priority': 5,
             \ 'mark': '/',
             \ 'word_pattern': '([^\W]|[-.~%$])+',
             \ 'complete_pattern': [
             \       '(\.[/\\]+|[a-zA-Z]:\\+|~\/+)',
-            \       '([^\W]|[-.~%$]|[/\\])+[/\\]+'],
+            \       '([^\W]|[-.~%$]|[/\\])+[/\\]+',
+            \       '~/'],
             \ 'on_complete': 'ncm2_path#on_complete_rootpath',
             \ 'on_warmup': 'ncm2_path#on_warmup',
-            \ })
-
-let g:ncm2_path#rootpath_source = extend(g:ncm2_path#rootpath_source,
-            \ get(g:, 'ncm2_path#rootpath_source_override', {}),
-            \ 'force')
+            \ }, 'keep')
 
 let g:ncm2_path#path_pattern = get(g:
             \ , 'ncm2_path#path_pattern', '(([^\W]|[-.~%$]|[/\\])+)')

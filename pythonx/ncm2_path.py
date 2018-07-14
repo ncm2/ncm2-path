@@ -130,10 +130,13 @@ class Source(Ncm2Source):
 
         logger.debug('dir: %s', dr)
 
-        if not path_keyword.startswith('/'):
+        if not dr.startswith('/'):
             return
 
-        label = 'root'
+        menu = '~root'
+        if dr != path_keyword:
+            menu = dr
+
         base_dir = '/'
 
         matcher = self.matcher_get(ctx['matcher'])
@@ -149,11 +152,8 @@ class Source(Ncm2Source):
             for name in names:
                 p = path.join(joined_dir, name)
                 word = path.basename(p)
-                menu = '~' + label
-                if expanded:
-                    menu += '~ ' + p
 
-                m = dict(word=word, menu='~' + label)
+                m = dict(word=word, menu=menu)
                 m = self.match_formalize(ctx, m)
                 if matcher(base, m):
                     matches.append(m)

@@ -4,10 +4,12 @@ endif
 let s:loaded = 1
 
 let g:ncm2_path#proc = yarp#py3('ncm2_path')
+let g:ncm2_path#proc.on_load = 'ncm2_path#on_load'
 
 let g:ncm2_path#bufpath_source = extend(
             \ get(g:, 'ncm2_path#bufpath_source', {}), {
             \ 'name': 'bufpath',
+            \ 'ready': 0,
             \ 'priority': 6,
             \ 'mark': '/',
             \ 'word_pattern': '([^\W]|[-.~%$])+',
@@ -21,6 +23,7 @@ let g:ncm2_path#bufpath_source = extend(
 let g:ncm2_path#cwdpath_source = extend(
             \ get(g:, 'ncm2_path#cwdpath_source', {}), {
             \ 'name': 'cwdpath',
+            \ 'ready': 0,
             \ 'priority': 5,
             \ 'mark': '/',
             \ 'word_pattern': '([^\W]|[-.~%$])+',
@@ -34,6 +37,7 @@ let g:ncm2_path#cwdpath_source = extend(
 let g:ncm2_path#rootpath_source = extend(
             \ get(g:, 'ncm2_path#rootpath_source', {}), {
             \ 'name': 'rootpath',
+            \ 'ready': 0,
             \ 'priority': 5,
             \ 'mark': '/',
             \ 'word_pattern': '([^\W]|[-.~%$])+',
@@ -52,6 +56,12 @@ func! ncm2_path#init()
     call ncm2#register_source(g:ncm2_path#bufpath_source)
     call ncm2#register_source(g:ncm2_path#cwdpath_source)
     call ncm2#register_source(g:ncm2_path#rootpath_source)
+endfunc
+
+func! ncm2_path#on_load()
+    call ncm2#set_ready(g:ncm2_path#bufpath_source)
+    call ncm2#set_ready(g:ncm2_path#cwdpath_source)
+    call ncm2#set_ready(g:ncm2_path#rootpath_source)
 endfunc
 
 func! ncm2_path#on_warmup(ctx)

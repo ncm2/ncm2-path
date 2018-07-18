@@ -8,9 +8,9 @@ from os import path, listdir
 logger = getLogger(__name__)
 
 
-class Source(Ncm2Source):
+class BufPath(Ncm2Source):
 
-    def on_complete_bufpath(self, ctx, path_pattern):
+    def on_complete(self, ctx, path_pattern):
         typed = ctx['typed']
         filepath = ctx['filepath']
         startccol = ctx['startccol']
@@ -62,7 +62,9 @@ class Source(Ncm2Source):
 
         self.complete(ctx, startccol, matches, refresh)
 
-    def on_complete_cwdpath(self, ctx, path_pattern, cwd):
+class CwdPath(Ncm2Source):
+
+    def on_complete(self, ctx, path_pattern, cwd):
         typed = ctx['typed']
         startccol = ctx['startccol']
         base = ctx['base']
@@ -113,7 +115,9 @@ class Source(Ncm2Source):
 
         self.complete(ctx, startccol, matches, refresh)
 
-    def on_complete_rootpath(self, ctx, path_pattern):
+class RootPath(Ncm2Source):
+
+    def on_complete(self, ctx, path_pattern):
         typed = ctx['typed']
         filepath = ctx['filepath']
         startccol = ctx['startccol']
@@ -169,8 +173,10 @@ class Source(Ncm2Source):
         self.complete(ctx, startccol, matches, refresh)
 
 
-source = Source(vim)
+buf_path = BufPath(vim)
+cwd_path = CwdPath(vim)
+root_path = RootPath(vim)
 
-on_complete_bufpath = source.on_complete_bufpath
-on_complete_cwdpath = source.on_complete_cwdpath
-on_complete_rootpath = source.on_complete_rootpath
+on_complete_bufpath = buf_path.on_complete
+on_complete_cwdpath = cwd_path.on_complete
+on_complete_rootpath = root_path.on_complete

@@ -59,9 +59,9 @@ func! ncm2_path#init()
 endfunc
 
 func! ncm2_path#on_load()
-    call ncm2#set_ready(g:ncm2_path#bufpath_source)
-    call ncm2#set_ready(g:ncm2_path#cwdpath_source)
-    call ncm2#set_ready(g:ncm2_path#rootpath_source)
+    let g:ncm2_path#bufpath_source.ready = 1
+    let g:ncm2_path#cwdpath_source.ready  = 1
+    let g:ncm2_path#rootpath_source.ready  = 1
 endfunc
 
 func! ncm2_path#on_warmup(ctx)

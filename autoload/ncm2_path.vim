@@ -12,10 +12,10 @@ let g:ncm2_path#bufpath_source = extend(
             \ 'ready': 0,
             \ 'priority': 6,
             \ 'mark': '/',
-            \ 'word_pattern': '([^\W]|[-.~%$])+',
+            \ 'word_pattern': '([^\W]|[-.~%$+])+',
             \ 'complete_pattern': [
             \       '(\.[/\\]+|[a-zA-Z]:\\+|~\/+)',
-            \       '([^\W]|[-.~%$]|[/\\])+[/\\]+'],
+            \       '([^\W]|[-.~%$+]|[/\\])+[/\\]+'],
             \ 'on_complete': 'ncm2_path#on_complete_bufpath',
             \ 'on_warmup': 'ncm2_path#on_warmup',
             \ }, 'keep')
@@ -26,10 +26,10 @@ let g:ncm2_path#cwdpath_source = extend(
             \ 'ready': 0,
             \ 'priority': 5,
             \ 'mark': '/',
-            \ 'word_pattern': '([^\W]|[-.~%$])+',
+            \ 'word_pattern': '([^\W]|[-.~%$+])+',
             \ 'complete_pattern': [
             \       '(\.[/\\]+|[a-zA-Z]:\\+|~\/+)',
-            \       '([^\W]|[-.~%$]|[/\\])+[/\\]+'],
+            \       '([^\W]|[-.~%$+]|[/\\])+[/\\]+'],
             \ 'on_complete': 'ncm2_path#on_complete_cwdpath',
             \ 'on_warmup': 'ncm2_path#on_warmup',
             \ }, 'keep')
@@ -40,17 +40,17 @@ let g:ncm2_path#rootpath_source = extend(
             \ 'ready': 0,
             \ 'priority': 5,
             \ 'mark': '/',
-            \ 'word_pattern': '([^\W]|[-.~%$])+',
+            \ 'word_pattern': '([^\W]|[-.~%$+])+',
             \ 'complete_pattern': [
             \       '(\.[/\\]+|[a-zA-Z]:\\+|~\/+)',
-            \       '([^\W]|[-.~%$]|[/\\])+[/\\]+',
+            \       '([^\W]|[-.~%$+]|[/\\])+[/\\]+',
             \       '~/'],
             \ 'on_complete': 'ncm2_path#on_complete_rootpath',
             \ 'on_warmup': 'ncm2_path#on_warmup',
             \ }, 'keep')
 
 let g:ncm2_path#path_pattern = get(g:
-            \ , 'ncm2_path#path_pattern', '(([^\W]|[-.~%$]|[/\\])+)')
+            \ , 'ncm2_path#path_pattern', '(([^\W]|[-.~%$+]|[/\\])+)')
 
 func! ncm2_path#init()
     call ncm2#register_source(g:ncm2_path#bufpath_source)

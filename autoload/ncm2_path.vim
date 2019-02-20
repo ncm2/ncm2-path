@@ -11,7 +11,6 @@ let g:ncm2_path#bufpath_source = extend(
             \ 'name': 'bufpath',
             \ 'ready': 0,
             \ 'priority': 6,
-            \ 'mark': '/',
             \ 'word_pattern': '([^\W]|[-.~%$+])+',
             \ 'complete_pattern': [
             \       '(\.[/\\]+|[a-zA-Z]:\\+|~\/+)',
@@ -25,7 +24,6 @@ let g:ncm2_path#cwdpath_source = extend(
             \ 'name': 'cwdpath',
             \ 'ready': 0,
             \ 'priority': 5,
-            \ 'mark': '/',
             \ 'word_pattern': '([^\W]|[-.~%$+])+',
             \ 'complete_pattern': [
             \       '(\.[/\\]+|[a-zA-Z]:\\+|~\/+)',
@@ -39,7 +37,6 @@ let g:ncm2_path#rootpath_source = extend(
             \ 'name': 'rootpath',
             \ 'ready': 0,
             \ 'priority': 5,
-            \ 'mark': '/',
             \ 'word_pattern': '([^\W]|[-.~%$+])+',
             \ 'complete_pattern': [
             \       '(\.[/\\]+|[a-zA-Z]:\\+|~\/+)',

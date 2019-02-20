@@ -48,6 +48,10 @@ class BufPath(Ncm2Source):
                     menu += '~ ' + p
 
                 m = dict(word=word, menu='~' + label)
+                if path.isdir(p):
+                    m['kind'] = 'd'
+                else:
+                    m['kind'] = 'f'
                 m = self.match_formalize(ctx, m)
                 if matcher(base, m):
                     matches.append(m)
@@ -101,6 +105,10 @@ class CwdPath(Ncm2Source):
                     menu += '~ ' + p
 
                 m = dict(word=word, menu='~' + label)
+                if path.isdir(p):
+                    m['kind'] = 'd'
+                else:
+                    m['kind'] = 'f'
                 m = self.match_formalize(ctx, m)
                 if matcher(base, m):
                     matches.append(m)
@@ -158,6 +166,10 @@ class RootPath(Ncm2Source):
                 word = path.basename(p)
 
                 m = dict(word=word, menu=menu)
+                if path.isdir(p):
+                    m['kind'] = 'd'
+                else:
+                    m['kind'] = 'f'
                 m = self.match_formalize(ctx, m)
                 if matcher(base, m):
                     matches.append(m)

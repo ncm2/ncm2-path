@@ -55,6 +55,8 @@ class BufPath(Ncm2Source):
                 m = self.match_formalize(ctx, m)
                 if matcher(base, m):
                     matches.append(m)
+        except FileNotFoundError as ex:
+            pass
         except Exception as ex:
             logger.exception('failed searching dir [%s]', joined_dir)
 
@@ -112,6 +114,8 @@ class CwdPath(Ncm2Source):
                 m = self.match_formalize(ctx, m)
                 if matcher(base, m):
                     matches.append(m)
+        except FileNotFoundError as ex:
+            pass
         except Exception as ex:
             logger.exception('failed searching dir [%s]', joined_dir)
 
@@ -173,6 +177,8 @@ class RootPath(Ncm2Source):
                 m = self.match_formalize(ctx, m)
                 if matcher(base, m):
                     matches.append(m)
+        except FileNotFoundError as ex:
+            pass
         except Exception as ex:
             logger.exception('failed searching dir [%s]', joined_dir)
 
